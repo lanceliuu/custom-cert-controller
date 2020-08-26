@@ -1,5 +1,5 @@
 /*
-Copyright 2019 The Knative Authors
+Copyright 2018 The Knative Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,18 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+// +k8s:deepcopy-gen=package
+// +groupName=networking.internal.knative.dev
+package v1alpha1
 
-import (
-	// The set of controllers this controller process runs.
-	"knative.dev/custom-cert-controller/pkg/reconciler/certificate"
-
-	// This defines the shared main for injected controllers.
-	"knative.dev/pkg/injection/sharedmain"
-)
-
-func main() {
-	sharedmain.Main("controller",
-		certificate.NewController,
-	)
-}
+// Ingress is heavily based on K8s Ingress
+// https://godoc.org/k8s.io/api/networking/v1beta1#Ingress with some
+// highlighted modifications.  See ingress_types.go for more
+// information about the modifications that we made.

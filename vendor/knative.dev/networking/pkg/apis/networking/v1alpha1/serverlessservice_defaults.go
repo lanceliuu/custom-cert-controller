@@ -14,18 +14,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package v1alpha1
 
-import (
-	// The set of controllers this controller process runs.
-	"knative.dev/custom-cert-controller/pkg/reconciler/certificate"
+import "context"
 
-	// This defines the shared main for injected controllers.
-	"knative.dev/pkg/injection/sharedmain"
-)
+// SetDefaults sets default values on the ServerlessServiceSpec.
+func (c *ServerlessService) SetDefaults(ctx context.Context) {
+	c.Spec.SetDefaults(ctx)
+}
 
-func main() {
-	sharedmain.Main("controller",
-		certificate.NewController,
-	)
+// SetDefaults sets default values on the ServerlessServiceSpec.
+func (c *ServerlessServiceSpec) SetDefaults(ctx context.Context) {
+	// Nothing is defaultable so far.
 }

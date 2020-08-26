@@ -14,18 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package v1alpha1
 
-import (
-	// The set of controllers this controller process runs.
-	"knative.dev/custom-cert-controller/pkg/reconciler/certificate"
+import "context"
 
-	// This defines the shared main for injected controllers.
-	"knative.dev/pkg/injection/sharedmain"
-)
-
-func main() {
-	sharedmain.Main("controller",
-		certificate.NewController,
-	)
-}
+// SetDefaults sets the default values for Certificate.
+// Currently it is required that all of the fields of Certificate are
+// provisioned by the client. Therefore, SetDefaults does nothing right now.
+func (c *Certificate) SetDefaults(context.Context) {}

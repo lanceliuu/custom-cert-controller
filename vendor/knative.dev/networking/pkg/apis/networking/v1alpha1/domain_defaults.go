@@ -1,11 +1,11 @@
 /*
-Copyright 2019 The Knative Authors
+Copyright 2020 The Knative Authors
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+    https://www.apache.org/licenses/LICENSE-2.0
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,18 +14,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
+package v1alpha1
 
 import (
-	// The set of controllers this controller process runs.
-	"knative.dev/custom-cert-controller/pkg/reconciler/certificate"
+	"context"
 
-	// This defines the shared main for injected controllers.
-	"knative.dev/pkg/injection/sharedmain"
+	"knative.dev/pkg/apis"
 )
 
-func main() {
-	sharedmain.Main("controller",
-		certificate.NewController,
-	)
+// SetDefaults populates default values in Domain
+func (d *Domain) SetDefaults(ctx context.Context) {
+	d.Spec.SetDefaults(apis.WithinSpec(ctx))
+}
+
+// SetDefaults populates default values in DomainSpec
+func (s *DomainSpec) SetDefaults(ctx context.Context) {
 }
